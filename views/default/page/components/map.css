@@ -1,0 +1,48 @@
+.maps-filler {
+	position: relative;
+	margin: 0;
+}
+
+.maps-filler:before {
+	display: block;
+	content: "";
+	width: 100%;
+	padding-top: 56.25%;
+}
+
+.maps-filler > .maps-map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.elgg-module-group .maps-filler {
+	min-height: 600px;
+}
+.maps-search-fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.maps-search-fields > .elgg-field {
+    flex: 1 1 auto;
+    padding: 0 5px;
+    margin: 0;
+}
+
+.maps-search-fields > .elgg-field:first-of-type {
+    padding-left: 0;
+}
+
+.maps-search-fields > .elgg-field:last-of-type {
+    padding-right: 0;
+    flex-grow: 0;
+}
+
+.maps-search-fields > .elgg-field input {
+    margin: 0;
+}

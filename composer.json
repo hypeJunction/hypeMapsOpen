@@ -1,0 +1,36 @@
+{
+	"name": "hypejunction/hypemapsopen",
+	"type": "elgg-plugin",
+	"description": "Maps built with open tech",
+	"homepage": "http://hypejunction.com",
+	"keywords": [
+		"elgg",
+		"plugin",
+		"maps",
+		"geocoder",
+		"location",
+		"leaflet",
+		"open street maps",
+		"nominatim"
+	],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Ismayil Khayredinov",
+			"email": "info@hypejunction.com"
+		}
+	],
+	"require": {
+		"php": ">=5.6",
+		"composer/installers": "~1.0",
+		"bower-asset/leaflet": "~1.0",
+		"bower-asset/Leaflet.awesome-markers": "~2.0",
+		"bower-asset/leaflet.markercluster": "~1.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "classes/"
+		}
+	}
+}
+
