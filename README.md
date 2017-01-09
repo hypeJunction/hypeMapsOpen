@@ -4,6 +4,10 @@ hypeMapsOpen for Elgg
 
 API and UI for maps built with open technology
 
+## Screenshots
+
+![User Map](https://postimg.org/image/rg2rceadp/ "User Map")
+
 ## Features
 
 * Geocoding and reverse geocoding via Nominatim
