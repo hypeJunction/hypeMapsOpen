@@ -6,7 +6,7 @@ API and UI for maps built with open technology
 
 ## Screenshots
 
-![User Map](https://s30.postimg.org/3p3duaa6p/open_maps.png "User Map")
+![User Map](https://raw.github.com/hypeJunction/hypeMapsOpen/master/screenshots/open-maps.png "User Map")
 
 ## Features
 
