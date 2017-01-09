@@ -6,7 +6,7 @@ API and UI for maps built with open technology
 
 ## Screenshots
 
-![User Map](https://postimg.org/image/rg2rceadp/ "User Map")
+![User Map](https://s30.postimg.org/3p3duaa6p/open_maps.png "User Map")
 
 ## Features
 
