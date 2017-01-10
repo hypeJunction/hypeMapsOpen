@@ -81,3 +81,28 @@ echo elgg_view('page/components/map', [
 	'show_search' => true,
 		]);
 ```
+
+### Change marker icon and color
+
+Use `'marker','<entity_type>'` hook.
+Supported colors: 'red', 'darkred', 'orange', 'green', 'darkgreen', 'blue', 'purple', 'darkpuple', 'cadetblue'
+
+
+```php
+
+elgg_register_plugin_hook_handler('marker', 'object', function($hook, $type, $return, $params) {
+
+	$entity = elgg_extract('entity', $params);
+
+	if ($entity instanceof Event) {
+		$return->icon = 'calendar';
+		$return->color = 'darkpurple'
+	}
+
+	return $return;
+})
+```
+
+### Change popup content
+
+Add a view for `maps/tooltip/<entity_type>/<entity_subtype>` or `maps/tooltip/<entity_type>/default`;
