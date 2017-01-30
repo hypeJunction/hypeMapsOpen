@@ -16,8 +16,7 @@ API and UI for maps built with open technology
 
 * Geocoding and reverse geocoding via Nominatim
 * Maps built with Leaflet.js
-* Default map tiles provided by Open Stree Maps
-
+* Default map tiles provided by Open Street Maps (customizagle in views)
 * User map
 * Groups map
 * Group members map
