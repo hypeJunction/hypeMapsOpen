@@ -221,7 +221,9 @@ class Geocoder {
 			$e->save();
 			$lat = $e->getLatitude();
 			$long = $e->getLongitude();
-			elgg_log("New coordinates for {$e->getDisplayName()} ({$e->type}:{$e->getSubtype()} $e->guid) [$lat, $long]", 'ERROR');
+			if ($lat && $long) {
+				elgg_log("New coordinates for {$e->getDisplayName()} ({$e->type}:{$e->getSubtype()} $e->guid) [$lat, $long]");
+			}
 			$i++;
 		}
 
