@@ -8,6 +8,10 @@ API and UI for maps built with open technology
 
 ![User Map](https://raw.github.com/hypeJunction/hypeMapsOpen/master/screenshots/open-maps.png "User Map")
 
+## Acknowledgements
+
+ * Plugin has been partially sponsored by [Social Business World] (https://socialbusinessworld.org "Social Business World")
+
 ## Features
 
 * Geocoding and reverse geocoding via Nominatim
