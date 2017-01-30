@@ -24,4 +24,6 @@ return [
 
 	'groups:location' => 'Location',
 
+	'admin:upgrades:maps:geocode' => 'Geocode entity coordinates',
+	'admin:upgrades:maps:geocode:description' => 'Scan all entities with a set location that are missing geo coordinates and geocode them to make sure they are displayed on maps',
 ];

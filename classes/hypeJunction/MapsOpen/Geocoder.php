@@ -124,7 +124,7 @@ class Geocoder {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$json = curl_exec($ch);
 			curl_close($ch);
-			
+
 			$file->open('write');
 			$file->write($json);
 			$file->close();
@@ -165,7 +165,7 @@ class Geocoder {
 		unset($entity->{"geo:long"});
 
 		$entity->geocoded_location = $entity->location;
-		
+
 		$coordinates = (new MapsService())->geocode($entity->location);
 		$lat = elgg_extract('lat', $coordinates) ?: '';
 		$long = elgg_extract('long', $coordinates) ?: '';
@@ -175,42 +175,14 @@ class Geocoder {
 
 	/**
 	 * Update entity geocoordinates
-	 * @return void
+	 * @return int
 	 */
 	public static function setBatchLatLong() {
-		if (!elgg_is_admin_logged_in()) {
-			return;
-		}
 
 		set_time_limit(0);
 
-		$exclude = array(
-			'messages',
-			'plugin',
-			'widget',
-			'site_notification',
-			'admin_notice',
-		);
-
-		foreach ($exclude as $k => $e) {
-			$exclude[$k] = get_subtype_id('object', $e);
-		}
-		$exclude_ids = implode(',', array_filter($exclude));
-
-		$location_md = elgg_get_metastring_id('location');
-		$lat_md = elgg_get_metastring_id('geo:lat');
-		$long_md = elgg_get_metastring_id('geo:long');
-
-		$dbprefix = elgg_get_config('dbprefix');
-		$entities = elgg_get_entities([
-			'limit' => 0,
+		$entities = self::getEntitiesWithoutGeocodes([
 			'batch' => true,
-			'wheres' => array(
-				($exclude_ids) ? "e.subtype NOT IN ($exclude_ids)" : null,
-				"EXISTS (SELECT 1 FROM {$dbprefix}metadata WHERE entity_guid = e.guid AND name_id = $location_md)",
-				"(NOT EXISTS (SELECT 1 FROM {$dbprefix}metadata WHERE entity_guid = e.guid AND name_id = $lat_md)
-				OR NOT EXISTS (SELECT 1 FROM {$dbprefix}metadata WHERE entity_guid = e.guid AND name_id = $long_md))",
-			)
 		]);
 
 		$entities->setIncrementOffset(false);
@@ -227,7 +199,63 @@ class Geocoder {
 			$i++;
 		}
 
-		system_message("Location metadata has been geocoded for $i entities");
+		return $i;
+	}
+
+	/**
+	 * Get entities that are missing geographic coordinates
+	 * 
+	 * @param array $options ege* options
+	 * @return ElggEntity[]|false
+	 */
+	public static function getEntitiesWithoutGeocodes(array $options = []) {
+
+		$exclude = array(
+			'messages',
+			'plugin',
+			'widget',
+			'site_notification',
+			'admin_notice',
+		);
+
+		foreach ($exclude as $k => $e) {
+			$exclude[$k] = get_subtype_id('object', $e);
+		}
+
+		$exclude_ids = implode(',', array_filter($exclude));
+
+		$location_md = elgg_get_metastring_id('location');
+		$lat_md = elgg_get_metastring_id('geo:lat');
+		$long_md = elgg_get_metastring_id('geo:long');
+
+		$exclude = array(
+			'messages',
+			'plugin',
+			'widget',
+			'site_notification',
+			'admin_notice',
+		);
+
+		foreach ($exclude as $k => $e) {
+			$exclude[$k] = get_subtype_id('object', $e);
+		}
+		
+		$exclude_ids = implode(',', array_filter($exclude));
+
+		$location_md = elgg_get_metastring_id('location');
+		$lat_md = elgg_get_metastring_id('geo:lat');
+		$long_md = elgg_get_metastring_id('geo:long');
+
+		$dbprefix = elgg_get_config('dbprefix');
+
+		$options['wheres'][] = ($exclude_ids) ? "e.subtype NOT IN ($exclude_ids)" : null;
+		$options['wheres'][] = "EXISTS (SELECT 1 FROM {$dbprefix}metadata WHERE entity_guid = e.guid AND name_id = $location_md)";
+		$options['wheres'][] = "(NOT EXISTS (SELECT 1 FROM {$dbprefix}metadata WHERE entity_guid = e.guid AND name_id = $lat_md)
+				OR NOT EXISTS (SELECT 1 FROM {$dbprefix}metadata WHERE entity_guid = e.guid AND name_id = $long_md))";
+				
+		$entities = elgg_get_entities($options);
+
+		return $entities;
 	}
 
 }

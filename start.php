@@ -59,7 +59,12 @@ elgg_register_event_handler('init', 'system', function() {
 		'deps' => ['leaflet'],
 	]);
 
+	elgg_register_action('upgrade/maps/geocode', __DIR__ . '/actions/upgrade/maps/geocode.php', 'admin');
 });
 
-
-elgg_register_event_handler('upgrade', 'system', [Geocoder::class, 'setBatchLatLong']);
+elgg_register_event_handler('upgrade', 'system', function() {
+	if (!elgg_is_admin_logged_in()) {
+		return;
+	}
+	require __DIR__ . '/lib/upgrades.php';
+});
