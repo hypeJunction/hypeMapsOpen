@@ -19,6 +19,6 @@ if ($count) {
 	$upgrade->setPath($path);
 	$upgrade->title = elgg_echo('admin:upgrades:maps:geocode');
 	$upgrade->description = elgg_echo('admin:upgrades:maps:geocode:description');
-	$upgrade->is_completed = false;
+	$upgrade->is_completed = 0;
 	$upgrade->save();
 }
