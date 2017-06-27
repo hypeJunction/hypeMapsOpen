@@ -15,7 +15,7 @@
  */
 use hypeJunction\MapsOpen\MapsService;
 use hypeJunction\MapsOpen\Marker;
-use Treffynnon\Navigator\LatLong;
+use hypeJunction\MapsOpen\LatLong;
 
 $svc = new MapsService();
 
