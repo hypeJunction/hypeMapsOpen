@@ -60,10 +60,10 @@ $map = elgg_format_element('div', [
 	'id' => $id,
 	'class' => 'maps-map',
 	'data-src' => $src,
-	'data-center' => json_encode($center->toArray()),
+	'data-center' => htmlspecialchars(json_encode($center->toArray()), ENT_QUOTES, 'UTF-8'),
 	'data-layer' => elgg_extract('layer', $vars),
-	'data-layer-opts' => json_encode(elgg_extract('layer_options', $vars)),
-	'data-markers' => json_encode($markers),
+	'data-layer-opts' => htmlspecialchars(json_encode(elgg_extract('layer_options', $vars)), ENT_QUOTES, 'UTF-8'),
+	'data-markers' => htmlspecialchars(json_encode($markers), ENT_QUOTES, 'UTF-8'),
 	'data-zoom' => elgg_extract('zoom', $vars),
 		]);
 ?>
