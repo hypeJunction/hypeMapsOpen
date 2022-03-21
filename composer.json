@@ -27,7 +27,7 @@
 		"php": ">=5.6",
 		"composer/installers": "~1.0",
 		"bower-asset/leaflet": "~1.0",
-		"bower-asset/Leaflet.awesome-markers": "~2.0",
+		"bower-asset/leaflet.awesome-markers": "~2.0",
 		"bower-asset/leaflet.markercluster": "~1.0"
 	},
 	"autoload": {
